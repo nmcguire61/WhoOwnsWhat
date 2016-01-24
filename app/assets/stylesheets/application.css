@@ -92,7 +92,7 @@ h2 {
   background-repeat: no-repeat;
   background-size: 100%;*/
   display: block;
-  border: solid 2px #000;
+  border: solid 2px #fff;
   width: 95%;
   height: 75px;
   margin-bottom: 10px;
@@ -152,6 +152,14 @@ li.game_pic img{
   font-size: 140%;
 }
 
+.game_name {
+  font-size: 140%;
+}
+
+.game_playtime {
+  font-size: 140%;
+}
+
 .compare_button {
   border: solid 2px #000;
   background-color: #099;
@@ -163,6 +171,23 @@ li.game_pic img{
   font-size: 180%;
 }
 
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #fff;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #fff;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #fff;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #fff;
+}
+:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+  color:    #fff;
+}
 
 
 @media only screen 
