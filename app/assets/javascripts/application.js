@@ -36,7 +36,8 @@ $(document).ready(function() {
 
     var steamidp1  = $('#steamidp1').val();
     //var url = '/steam_fred/'//?steamidp1=' + steamidp1;
-    var url = 'first_player/?steamidp1=' + steamidp1;
+    //var url = 'first_player/?steamidp1=' + steamidp1;
+    var url = 'first_player/'
     console.log(url);
 
     console.log('Pressed the button');
@@ -47,7 +48,7 @@ $(document).ready(function() {
       url: url,
       type: 'GET',
       data: {steamidp1 : steamidp1},
-      //dataType: "json",
+      dataType: "json",
       success: function(data) {
         console.log(steamidp1);
         console.log(data);

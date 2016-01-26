@@ -7,12 +7,19 @@ class ApplicationController < ActionController::Base
 
  # respond_to :js, :json, :html
 
+  def set_player
+    @set_player1 = SteamWebApi::Player.new(params['steamidp1'])
+  end
 
   def first_player
     # binding.pry()
-    @first_player1 = SteamWebApi::Player.new(params['steamidp1'])
-    #render text: @player.owned_games
-    render text: @first_player.owned_games if @first_player
+   
+      if @set_player1
+        set_player
+      else
+        render text: "first player not setting right!"
+    end
+     render text: @set_player1
   end
 
   # def player2
@@ -28,8 +35,7 @@ class ApplicationController < ActionController::Base
   # end
 
   def library
-    @player = first_player if first_player
-    library = @player.owned_games(include_played_free_games: true, include_appinfo: true) if @player
+    library = @set_player1.owned_games(include_played_free_games: true, include_appinfo: true) if first_player
 
   end
 
@@ -41,6 +47,7 @@ class ApplicationController < ActionController::Base
   end
 
   def this_game
+    # binding.pry
     if library.games
       library.games.select {|game| game["name"] == "Dota 2"}
     # library.games.first
@@ -52,7 +59,8 @@ class ApplicationController < ActionController::Base
   end
 
   def steam_fred
-    return_value = player.summary.profile['personaname'] if player.summary.profile
+    # binding.pry
+    return_value = player.summary.profile['personaname'] if @player
     render text: return_value
   end
 
@@ -94,7 +102,7 @@ class ApplicationController < ActionController::Base
   end
 
   def show_library
-    render text: library_names
+    render text: library_names if library
   end
 
   
