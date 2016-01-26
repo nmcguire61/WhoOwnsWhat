@@ -9,7 +9,7 @@
 <body class="shadow">
   
   <header class="shadow">
-    <h1>Welcome To Steam Who Owns What</h1>
+    <h1>Welcome To Steam - Who Owns What</h1>
     <p>To see your own games simply enter your Steamid number into the the specified box and hit the Find Us Some Games button.<br><br> To compare to your friends simply input your Steamid number into the specified box and the additional accounts Steamid's into the subsequent boxes on the right hand side then click on the Find Us Some Games button</p>
   </header>
 
@@ -22,7 +22,7 @@
     <ul class="flexbox1">
 
       <li>
-        <%=form_tag(controller: "application", action: "player",  id: "all_users", method: "post", class: "main_user")%>
+        <%=form_tag(root_path, id: "all_users", method: "get", class: "main_user")%>
           <input type="text" class="name_field shadow2" id="steamidp1" name="steamidp1" placeholder="Enter SteamId Number Here"><br>
           <input type="submit" class= "compare_button shadow" name="compare_button" value="Find Us Some Games!" id="submit" />
         </form_tag>
@@ -45,12 +45,28 @@
               <li class="game_playtime" id="game_playtime"></li>
             </ul>
           </li>
+          <li class="game">
+            <ul class="show_game">
+              <li class="game_pic" id="game_pic"><img src="<%= game_pic %>"></li>
+              <li class="game_name" id="game_name"></li>
+              <li class="game_playtime" id="game_playtime"></li>
+            </ul>
+          </li>
         </ul>
       </li>
 
       <li class="right_column shadow2">
         <h2>Partial Matches</h2>
         <ul class="flexbox3">
+          <li class="game" id="game_other">
+            <p>This Game Could Work!</p>
+          </li>
+          <li class="game" id="game_other">
+            <p>This Game Could Work!</p>
+          </li>
+          <li class="game" id="game_other">
+            <p>This Game Could Work!</p>
+          </li>
           <li class="game" id="game_other">
             <p>This Game Could Work!</p>
           </li>

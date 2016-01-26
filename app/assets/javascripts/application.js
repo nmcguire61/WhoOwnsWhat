@@ -17,15 +17,6 @@
 
 $(document).ready(function() {
 
-  function startLoading() {
-    $('#updatemessage').slideDown();
-  }
-
-  function endLoading() {
-    $('#stock_symbol').val('');
-    $('#updatemessage').slideUp();
-  }
-
   function updateElement($element, content) {
     if ($element.text() != content) {
       $element.text(content);
@@ -36,32 +27,49 @@ $(document).ready(function() {
         $element.removeClass('flash');
       }, 1000);
     }
+  };
 
-    $('#submit').on('submit', function (e){
-      e.preventDefault();
 
-      var steamidp1  = $('#steamidp1').val();
-      var url = '/' + steamidp1;
+  $('#all_users').on('submit', function (e){
+    alert("hi neil");
+    e.preventDefault();
 
-      console.log('Pressed the button');
+    var steamidp1  = $('#steamidp1').val();
+    //var url = '/steam_fred/'//?steamidp1=' + steamidp1;
+    var url = 'first_player/?steamidp1=' + steamidp1;
+    console.log(url);
 
-      $.ajax({
-        url: url,
-        type: 'GET',
-        success: function(data) {
-          console.log('that all worked just fine');
-          console.log(data);
-        },
-        complete: function(response) {
-          console.log(response.responseText);
-        }
-      });
+    console.log('Pressed the button');
+
+
+
+    $.ajax({
+      url: url,
+      type: 'GET',
+      data: {steamidp1 : steamidp1},
+      //dataType: "json",
+      success: function(data) {
+        console.log(steamidp1);
+        console.log(data);
+      },
+      failure:function() {
+        console.log("FAILED");
+      }
     });
 
-
-    
-    };
+    /*$.ajax({
+      url: url,
+      type: 'POST',
+      data: {"steamidp1" : $(this).val()},
+      dataType: "json",
+      success: function(data) {
+        console.log(steamidp1);
+      },
+    });*/
   });
+
+
+});
 
 
 $(document).ready(function() {
@@ -76,11 +84,11 @@ $(function() {
   })
 });
 
-$(function() {
-  $.get('/library_names').success(function(data){
-    $('#library_names').append(data);
-  })
-});
+// $(function() {
+//   $.get('/library_names').success(function(data){
+//     $('#library_names').append(data);
+//   })
+// });
 
 
 $(function() {
@@ -96,7 +104,7 @@ $(function() {
 });
 
 $(function() {
-  $.get('/game_pic').success(function(data){
+  $.get('/game_picture').success(function(data){
     $('#game_pic').append(data);
   })
 });

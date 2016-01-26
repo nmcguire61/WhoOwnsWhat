@@ -12,11 +12,11 @@ Rails.application.routes.draw do
   get 'steam_fred', to: 'application#steam_fred'
   get 'game_name', to: 'application#game_name'
   get 'game_playtime', to: 'application#game_playtime'
-  get 'game_pic', to: 'application#game_pic'
+  get 'game_picture', to: 'application#game_picture'
   get 'show_library', to: 'application#show_library'
   get 'game_other', to: 'application#game_other'
   get 'library_names', to: 'application#library_names'
-  post 'player', to: 'application#player'
+  get 'first_player', to: 'application#first_player'
   
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
