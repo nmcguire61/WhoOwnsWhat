@@ -6,20 +6,22 @@ class ApplicationController < ActionController::Base
  helper_method :game_pic
 
  # respond_to :js, :json, :html
+ before_action :set_player
 
   def set_player
     @set_player1 = SteamWebApi::Player.new(params['steamidp1'])
   end
 
-  def first_player
-    # binding.pry()
-   
-      if @set_player1
-        set_player
-      else
-        render text: "first player not setting right!"
+  def player_valid?
+    @set_player1.summary.success
+  end
+
+  def first_player   
+    if player_valid?
+      render text: @set_player1.summary.profile['steamid']
+    else
+      render text: "first player not setting right!", status: :failed
     end
-     render text: @set_player1
   end
 
   # def player2
@@ -35,12 +37,12 @@ class ApplicationController < ActionController::Base
   # end
 
   def library
-    library = @set_player1.owned_games(include_played_free_games: true, include_appinfo: true) if first_player
+    library = @set_player1.owned_games(include_played_free_games: true, include_appinfo: true) if set_player
 
   end
 
   def library_names
-    if library.games
+    if library && library.games
       library.games.map {|game| game["name"] }
     end
 
@@ -48,7 +50,7 @@ class ApplicationController < ActionController::Base
 
   def this_game
     # binding.pry
-    if library.games
+    if library && library.games
       library.games.select {|game| game["name"] == "Dota 2"}
     # library.games.first
     end

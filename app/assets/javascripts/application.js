@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 
 $(document).ready(function() {
@@ -31,7 +30,6 @@ $(document).ready(function() {
 
 
   $('#all_users').on('submit', function (e){
-    alert("hi neil");
     e.preventDefault();
 
     var steamidp1  = $('#steamidp1').val();
@@ -42,19 +40,18 @@ $(document).ready(function() {
 
     console.log('Pressed the button');
 
-
-
     $.ajax({
       url: url,
       type: 'GET',
       data: {steamidp1 : steamidp1},
-      dataType: "json",
-      success: function(data) {
+      // dataType: "json",
+      success: function (data.summary.profile['steamid']) {
         console.log(steamidp1);
         console.log(data);
+
       },
-      failure:function() {
-        console.log("FAILED");
+      complete:function() {
+        console.log("complete");
       }
     });
 
